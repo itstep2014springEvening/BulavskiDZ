@@ -8,17 +8,11 @@ int main()
     scanf("%d", &a);
     printf("Enter number b:");
     scanf("%d", &b);
-    if (b==0)
+    printf("%d + %d= %d\n", a,b,a+b);
+    printf("%d - %d= %d\n", a,b,a-b);
+    printf("%d * %d= %d\n", a,b,a*b);
+    if (b!=0)
     {
-        printf("%d + %d= %d\n", a,b,a+b);
-        printf("%d - %d= %d\n", a,b,a-b);
-        printf("%d * %d= %d\n", a,b,a*b);
-    }
-    else
-    {
-        printf("%d + %d= %d\n", a,b,a+b);
-        printf("%d - %d= %d\n", a,b,a-b);
-        printf("%d * %d= %d\n", a,b,a*b);
         printf("%d / %d= %d\n", a,b,a/b);
     }
 
