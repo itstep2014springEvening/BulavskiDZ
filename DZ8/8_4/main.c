@@ -3,16 +3,21 @@
 
 int main()
 {
-    int l, x, n, b=12;
+    int i, p=0, x=0, n;
     printf("Vvedite chislo:");
     scanf("%d", &n);
-    while (n>=b)
+    i=n;
+    while (i>0)
     {
-        l=n%b;
-        x=n/b;
-        n=x;
-        printf("%d\n",l);
+        x=(x*10)+(i%12);
+        i/=12;
     }
-    printf("%d",x);
+    i=x;
+    while (i>0)
+    {
+        p=(p*10)+(i%10);
+        i/=10;
+    }
+    printf("%d",p);
     return 0;
 }
