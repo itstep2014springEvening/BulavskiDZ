@@ -20,6 +20,11 @@ int main()
         case '-':
             stack[++top]=--a;
             break;
+        case '<':
+            --top;
+            break;
+        case '>':
+            ++top;
         case '.':
             printf("%c", stack[top]);
             break;
