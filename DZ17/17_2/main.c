@@ -4,8 +4,8 @@
 int main()
 {
     int N=30000;
-    char stack[N],a=0;
-    int top = -1;
+    char memory[N];
+    int head = 0;
     char temp;
     printf("Enter code:\n");
     while (temp!=';')
@@ -13,20 +13,19 @@ int main()
         scanf("%c", &temp);
         switch (temp)
         {
-            stack[++top]=temp;
         case '+':
-            stack[++top]=++a;
+            memory[head]++;
             break;
         case '-':
-            stack[++top]=--a;
+            --memory[head];
             break;
         case '<':
-            --top;
+            --head;
             break;
         case '>':
-            ++top;
+            ++head;
         case '.':
-            printf("%c", stack[top]);
+            printf("%c", memory[head]);
             break;
         case ';':
             break;
