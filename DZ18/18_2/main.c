@@ -11,7 +11,7 @@ int main()
     int AdrRegistor;
     int OperRegistor;
     int top=100, bias=0;
-    printf("Hello, user!\nenter your team:\n");
+    printf("Hello, user!\nEnter your command:\n");
     while (x!=-99999)
     {
         printf("%02d ", i);
