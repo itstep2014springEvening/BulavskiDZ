@@ -51,12 +51,11 @@ void heapsort (int array[], int size)
 {
     int temp;
     build(array,size);
-    for (int i=size-1; i>=1; --i)
+    for (int i=size-1; i>=0; --i)
     {
         temp=array[i];
         array[i]=array[i-i];
         array[i-i]=temp;
-        --size;
         repair(array, i-i, i-1);
     }
 }
