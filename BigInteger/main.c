@@ -2,49 +2,94 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-
 const int maxlen = 100;
-int base = 10000;
+const int sys = 10000;
+
+/*typedef struct BigInteger
+{
+    int array[maxlen];
+    int syslen;
+    int st;
+} vlong;*/
 
 
-//void getlong (BigInteger array[maxlen]);*/
+void getlong (int array[maxlen]);
+int compere (int arr_A[], int arr_B[]);
+void printlong (int array[]);
 
 int main()
 {
-    char str[120];
-    gets(str);
-    char str2[120];
-    memset(str2,0, sizeof(str2));
-    int p=4;
-    int size = strlen(str);
-    int array[maxlen];
-    memset(array,0, sizeof(array));
-    while (size>0)
-    {
-        int r=0;
-        ++r;
-        size-=p;
-        for (int i=size, j=0; j<size, i<size+p; ++i, ++j)
-        {
-            str2[j] = str[i];
+    int a[maxlen], b[maxlen];
+    printf("Enter biginteger a: ");
 
-        }
-        array[r] = atoi(str2);
-        printf("%d\n", array[r]);
-    }
+    getlong(a);
+
+    printf("Enter biginteger b: ");
+
+    getlong(b);
+    printlong(a);
     return 0;
 }
 
-/*void getlong (BigInteger array[maxlen])
+void getlong (int array[maxlen])
 {
-   memset(array,0,sizeof(array));
-   char str;
-   getc(str);
-   int i=0, znak=4;
-   char shag;
-   while()
-   shag  = str/znak;
-   strcpy(str,array[i]);
-}*/
+    for (int i=0; i<=maxlen; ++i)
+        array[i]=0;
+    char str[maxlen];
+    gets(str);
+    char str2[maxlen];
+    memset(str2, 0, sizeof(str2));
+    int p=4;
+    int size = strlen(str);
+    int r=0;
+    while (size>0)
+    {
+        size-=p;
 
+        for (int i=size, j=0; j<size, i<size+p; ++i, ++j)
+            str2[j] = str[i];
+
+        array[r] = atoi(str2);
+        ++r;
+    }
+
+    if (size+p>0)
+    {
+        for (int i=0, j=0; j<size+p-1, i<size+p-1; ++i, ++j)
+            str2[j] = str[i];
+
+        --r;
+        array[r] = atoi(str2);
+    }
+}
+
+int compere (int arr_A[], int arr_B[])
+{
+    int value;
+
+    for (int i = maxlen; i>=0; --i)
+    {
+        if (arr_A[i]>arr_B[i])
+            value = 1;
+        else if (arr_A[i]<arr_B[i])
+            value = -1;
+        else
+            value = 0;
+    }
+
+    return value;
+}
+
+void printlong (int array[])
+{
+    int i = maxlen;
+
+    while(array[i]==0)
+        --i;
+
+    if (i==0)
+        printf("0");
+    else
+        for (int j=i; j>=0; --j)
+            printf("%.4d", array[j]);
+}
