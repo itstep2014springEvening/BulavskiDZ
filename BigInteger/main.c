@@ -5,50 +5,50 @@
 const int maxlen = 100;
 const int sys = 10000;
 
-/*typedef struct BigInteger
-{
-    int array[maxlen];
-    int syslen;
-    int st;
-} vlong;*/
-
-
-void getlong (int array[maxlen]);
-int compere (int arr_A[], int arr_B[]);
+void getlong (int array[]);
+int compare (int *a, int *b);
 void printlong (int array[]);
-int add (int arr_A[], int arr_B[], int arr_C[]);
+int add (int *a, int *b, int *c);
 void freeArray (int array[]);
-int sub (int arr_A[], int arr_B[], int arr_C[]);
+int sub (int *a, int *b, int *c);
+int multiply (int *a, int *b, int *c);
 
 int main()
 {
     int a[maxlen], b[maxlen], c[maxlen];
-    char opert;
+    char oper;
     freeArray(c);
     printf("Enter biginteger a: ");
     getlong(a);
     printf("Enter biginteger b: ");
     getlong(b);
     printf("Enter operator: ");
-    scanf("%c", &opert);
-    printf("%d",compere(a,b));
-    switch(opert)
+    scanf("%c", &oper);
+    printf("\n");
+    switch(oper)
     {
     case '+':
         add(a,b,c);
+        printf("Result = ");
         printlong(c);
         break;
     case '-':
         sub(a,b,c);
+        printf("Result = ");
+        printlong(c);
+        break;
+    case '*':
+        multiply(a,b,c);
+        printf("Result = ");
         printlong(c);
         break;
     default:
-        printf("Net operazii\n");
+        printf("Net operacii\n");
     }
     return 0;
 }
 
-void getlong (int array[maxlen])
+void getlong (int array[])
 {
     freeArray(array);
     char str[maxlen];
@@ -60,6 +60,7 @@ void getlong (int array[maxlen])
     int r=0;
     while (size>p)
     {
+        ++r;
         size-=p;
         for (int i=size, j=0; i<size+p; ++i, ++j)
         {
@@ -67,21 +68,22 @@ void getlong (int array[maxlen])
             str[size]-=p;
         }
         array[r] = atoi(str2);
-        ++r;
     }
     if (size)
-        array[r] = atoi(str);
+        ++r;
+    array[r] = atoi(str);
+    if (str==("-"))
+        array[r]*=-1;
 }
 
-int compere (int arr_A[], int arr_B[])
+int compare (int *a, int *b)
 {
-    int value;
-
-    for (int i = maxlen; i>=0; --i)
+    int value,i;
+    for (i = maxlen; i>=1; --i)
     {
-        if (arr_A[i]>arr_B[i])
+        if (a[i] > b[i])
             value = 1;
-        else if (arr_A[i]<arr_B[i])
+        else if (a[i] < b[i])
             value = -1;
         else
             value = 0;
@@ -97,42 +99,65 @@ void printlong (int array[])
     while(array[i]==0)
         --i;
 
-    if (i==0 && array[i]==0)
-        printf("%.4d", array[i]);
+    if (i==-1)
+        printf("0");
     else
-        for (int j=i; j>=0; --j)
-            printf("%.4d", array[j]);
-}
-
-int add (int arr_A[], int arr_B[], int arr_C[])
-{
-    int i;
-    for (i = 0; i<maxlen; ++i)
     {
-        arr_C[i] = arr_A[i] + arr_B[i];
-        arr_B[i+1]+= arr_C[i]/sys;
-        arr_C[i] = arr_C[i] % sys;
+        if(array[i]<0)
+            printf("-");
+        for (int j=i; j>=1; --j)
+            if (array[j]<0)
+            {
+                printf("%.4d", abs(array[j]));
+            }
+            else
+                printf("%.4d", array[j]);
     }
-    return arr_C[i];
+
 }
 
-int sub (int arr_A[], int arr_B[], int arr_C[])
+int add (int *a, int *b, int *c)
 {
     int i;
-    int p=compere(arr_A,arr_B);
-    for (i = 0; i<=maxlen; ++i)
+    for (i = 1; i<maxlen; ++i)
     {
-        if (p==-1)
-            arr_C[i] = arr_B[i] - arr_A[i];
-        else
-            arr_C[i] = arr_A[i] - arr_B[i];
-        if (arr_C[i]<0)
+        c[i] = a[i] + b[i];
+        b[i+1]+= c[i]/sys;
+        c[i]%= sys;
+    }
+    return c[i];
+}
+
+int sub (int *a, int *b, int *c)
+{
+    int i;
+    int p=compare(a,b);
+    for (i = 1; i<=maxlen; ++i)
+    {
+        if(p==-1)
         {
-            arr_C[i]+=sys;
-            arr_A[i+1]-=1;
+            c[i] = b[i] - a[i];
+            c[i]*=-1;
+        }
+        else
+            c[i] = a[i] - b[i];
+    }
+    return c[i];
+}
+
+int multiply (int *a, int *b, int *c)
+{
+    int i, j;
+    for (i = 1; i < maxlen; ++i)
+    {
+        for (j = 1; j < maxlen; ++j)
+        {
+            c[i + j - 1] += a[i] * b[j];
+            c[i + 1] +=  c[i] / sys;
+            c[i] %= sys;
         }
     }
-    return arr_C[i];
+    return c[i];
 }
 
 void freeArray (int array[])
@@ -140,3 +165,4 @@ void freeArray (int array[])
     for (int i=0; i<=maxlen; ++i)
         array[i]=0;
 }
+
