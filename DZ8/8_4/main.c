@@ -1,23 +1,22 @@
-#include <stdio.h>
+##include <stdio.h>
 #include <stdlib.h>
 
 int main()
 {
-    int i, p=0, x=0, n;
-    printf("Vvedite chislo:");
-    scanf("%d", &n);
-    i=n;
-    while (i>0)
+    int number, result=0;
+    char cymbol=65;
+    printf("Enter number:");
+    scanf("%d", &number);
+    while (!result)
     {
-        x=(x*10)+(i%12);
-        i/=12;
+        result=number/12*10+number%12;
+        if (number%12==10)
+            printf("%d%c", number/12, cymbol);
+        else if (number%12==11)
+            printf("%d%c", number/12, cymbol+1);
+        else
+            printf("%d", result);
     }
-    i=x;
-    while (i>0)
-    {
-        p=(p*10)+(i%10);
-        i/=10;
-    }
-    printf("%d",p);
     return 0;
 }
+
