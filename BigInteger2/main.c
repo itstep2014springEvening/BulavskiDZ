@@ -18,7 +18,7 @@ BigInteger add(BigInteger a, BigInteger b);
 BigInteger sub(BigInteger a, BigInteger b);
 BigInteger multiply (BigInteger a, BigInteger b);
 void getlong();
-void printlong(BigInteger a);
+BigInteger printlong(BigInteger a);
 void freeArray(BigInteger a);
 
 int main()
@@ -32,8 +32,7 @@ int main()
     printf("Enter operator: ");
     scanf("%c", &oper);
     printf("\n");
-    printlong(a);
-    printf("\n");
+    memset(c.array, 0, sizeof(c.array));
     switch(oper)
     {
     case '+':
@@ -148,7 +147,7 @@ void getlong()
         a.array[a.possize]*=-1;
 }
 
-void printlong(BigInteger a)
+BigInteger printlong(BigInteger a)
 {
     a.possize = maxlen;
 
@@ -160,5 +159,6 @@ void printlong(BigInteger a)
     else
         for (int j=a.possize; j>=1; --j)
             printf("%.4d", a.array[j]);
+    return a;
 }
 
