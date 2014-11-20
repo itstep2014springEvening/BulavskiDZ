@@ -57,13 +57,7 @@ Vector Vector::operator-(Vector b)
 
 double Vector::dot(Vector b)
 {
-    double a;
-    Vector result(0,0,0);
-    result.x = x * b.x;
-    result.y = y * b.y;
-    result.z = z * b.z;
-    a = result.x + result.y + result.z;
-    return a;
+    return x * b.x + y * b.y + z * b.z;
 }
 
  Vector Vector::cross(Vector b)
