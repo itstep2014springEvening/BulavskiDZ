@@ -17,23 +17,34 @@ int compare(BigInteger a, BigInteger b);
 BigInteger add(BigInteger a, BigInteger b);
 BigInteger sub(BigInteger a, BigInteger b);
 BigInteger multiply (BigInteger a, BigInteger b);
+<<<<<<< HEAD
+void getlong(BigInteger a);
+BigInteger printlong(BigInteger a);
+void freeArray(BigInteger *a);
+=======
 void getlong();
-void printlong(BigInteger a);
+BigInteger printlong(BigInteger a);
 void freeArray(BigInteger a);
+>>>>>>> 2de5d48f0790e047dd5908f8b651ebeb50195b57
 
 int main()
 {
     BigInteger a, b, c;
     char oper;
     printf("Enter biginteger a: ");
-    getlong();
+    getlong(a);
     printf("Enter biginteger b: ");
-    getlong();
+    getlong(b);
+    printlong(a);
     printf("Enter operator: ");
     scanf("%c", &oper);
+<<<<<<< HEAD
+    freeArray(&c);
     printf("\n");
-    printlong(a);
+=======
     printf("\n");
+    memset(c.array, 0, sizeof(c.array));
+>>>>>>> 2de5d48f0790e047dd5908f8b651ebeb50195b57
     switch(oper)
     {
     case '+':
@@ -119,11 +130,10 @@ BigInteger multiply (BigInteger a, BigInteger b)
     return result;
 }
 
-void getlong()
+void getlong(BigInteger a)
 {
-    BigInteger a;
     a.possize=0;
-    memset(a.array, 0, sizeof(a.array));
+    freeArray(&a);
     char str[maxlen];
     gets(str);
     char str2[maxlen];
@@ -146,9 +156,14 @@ void getlong()
     a.array[a.possize] = atoi(str);
     if (str==("-"))
         a.array[a.possize]*=-1;
+    return a;
 }
-
+<<<<<<< HEAD
 void printlong(BigInteger a)
+=======
+
+BigInteger printlong(BigInteger a)
+>>>>>>> 2de5d48f0790e047dd5908f8b651ebeb50195b57
 {
     a.possize = maxlen;
 
@@ -160,5 +175,15 @@ void printlong(BigInteger a)
     else
         for (int j=a.possize; j>=1; --j)
             printf("%.4d", a.array[j]);
+    return a;
+<<<<<<< HEAD
+}
+
+void freeArray(BigInteger *a)
+{
+    for(int i = maxlen; i>=0; --i)
+        a->array[i]=0;
+=======
+>>>>>>> 2de5d48f0790e047dd5908f8b651ebeb50195b57
 }
 
