@@ -1,0 +1,6 @@
+ $name$();
+    $name$(const $name$ &amp;other);
+    $name$ &amp;operator=(const $name$ &amp;other);
+    $name$($name$ &amp;&amp;other);
+    $name$ &amp;operator=($name$ &amp;&amp;other);
+    ~$name$();
