@@ -1,22 +1,11 @@
 #include <iostream>
 #include <cstdlib>
 #include <utility>
+#include "mymatrix.h"
 
 using namespace std;
 
-class Matrix
-{
-public:
-    Matrix();
-    Matrix(Matrix &&other);
-    Matrix operator=(Matrix &&other);
-    void input ();
-    void otput ();
-    ~Matrix();
-private:
-    double **mtr;
-    int m, n;
-};
+
 
 int main()
 {
@@ -26,10 +15,10 @@ int main()
     return 0;
 }
 
-Matrix::Matrix()
+/*Matrix::Matrix()
 {
     mtr = nullptr;
-    mtr = new double *[m];
+    mtr = new Matrix;
     for (int i = 0; i < m; ++i)
         mtr[i] = 0;
 }
@@ -43,16 +32,16 @@ Matrix::Matrix(Matrix &&other):
     swap(mtr, other.mtr);
     swap(m, other.m);
     swap(n, other.n);
-}
-void Matrix::input()
+}*/
+/*void Matrix::input()
 {
     cout << "M = ";
-    cin >> m;
+    cin >> m
     cout << "N = ";
     cin >> n;
-    /*for(int i = 0; i < m; ++i)
+    for(int i = 0; i < m; ++i)
         for(int j = 0; j < n; ++j)
-            cin >> **mtr;*/
+            cin >> **mtr;
 
 
 }
@@ -75,4 +64,4 @@ Matrix::~Matrix()
     }
     delete [] mtr;
     mtr = nullptr;
-}
+}*/
