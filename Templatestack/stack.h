@@ -1,11 +1,7 @@
 #ifndef STACK_H
 #define STACK_H
-#include <iostream>
 #include <utility>
-
-using namespace std;
-
-//typedef int Data;
+#include <exception>
 
 template<typename T>
 class Stack
@@ -52,7 +48,7 @@ template<typename T>
 Stack<T> &Stack<T>::operator=(const Stack &rhs) //Оператор копирующего присваивания
 {
     Stack temp(rhs);
-    swap(*this, temp);
+    std::swap(*this, temp);
     return *this;
 }
 
@@ -60,13 +56,13 @@ template<typename T>
 Stack<T>::Stack(Stack &&victim) :
     top(nullptr) //Конструктор перемещения
 {
-    swap(top, victim.top);
+    std::swap(top, victim.top);
 }
 
 template<typename T>
 Stack<T> &Stack<T>::operator=(Stack &&rhs) //Оператор переместительного присваивания
 {
-    swap(*this, rhs);
+    std::swap(*this, rhs);
     return *this;
 }
 
@@ -120,7 +116,7 @@ template<typename T>
 T Stack<T>::onTop() const
 {
     if (isEmpty())
-        throw exception();
+        throw std::exception();
     return top->value;
 }
 
