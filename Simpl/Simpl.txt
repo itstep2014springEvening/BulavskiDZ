@@ -1,0 +1,6 @@
+10 input x
+20 input y
+25 input x
+30 let z = x + y
+40 print z
+99 end
