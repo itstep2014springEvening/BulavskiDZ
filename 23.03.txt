@@ -1,0 +1,5 @@
+1.1.Связанные списки в С#: List, Queue;
+1.2.Динамические массивы в С#: ArrayList, SortedList;
+1.3.Деревья в С#: SortedDictionary, ListDictionary, NameValueCollections;
+1.4.Хеш-таблицы - HashTable.
+
